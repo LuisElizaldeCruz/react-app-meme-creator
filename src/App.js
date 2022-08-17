@@ -40,7 +40,8 @@ function App() {
         <span>{linea1}</span><br />
         <span>{linea2}</span>
         <img
-          src=''
+          src={`/img/meme1.jpg`}
+          alt="Meme 1"
         />
       </div>
     </div>
