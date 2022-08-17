@@ -1,7 +1,13 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [linea1, setLinea1] = useState("hola mundo");
+  const [linea2, setLinea2] = useState("hola mundo");
+
+  const onChangeLinea1 = e => setLinea1(e.target.value);
+  const onChangeLinea2 = e => setLinea2(e.target.value);
+
   return (
     <div className="App">
       <select>
@@ -12,14 +18,25 @@ function App() {
         <option value="meme5">img de meme 5</option>
         <option value="meme6">img de meme 6</option>
       </select>
-      <br/>
+      <br />
 
-      <input type="text" placeholder="linea 1"></input><br />
-      <input type="text" placeholder="linea 2"></input><br/>
+      <input
+        onChange={onChangeLinea1}
+        type="text"
+        placeholder="linea 1">
+      </input><br />
+      <input
+        onChange={onChangeLinea2}
+        type="text"
+        placeholder="linea 2">
+      </input><br />
       <button>Exportar</button>
       <div>
-        <spa>Linea 1</spa>
-        <spa>Linea 2</spa>
+        <span>{linea1}</span><br />
+        <span>{linea2}</span>
+        <img
+          src=''
+        />
       </div>
     </div>
   );
