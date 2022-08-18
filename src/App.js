@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   const [linea1, setLinea1] = useState("");
   const [linea2, setLinea2] = useState("");
-  const [imagen, setImagen] = useState("");
+  const [imagen, setImagen] = useState("meme1");
 
   const onChangeLinea1 = e => setLinea1(e.target.value);
   const onChangeLinea2 = e => setLinea2(e.target.value);
@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <select onChange={onChangeImagen}>
-        <option value="meme1">img de meme 2</option>
-        <option value="meme2">img de meme 1</option>
+        <option value="meme1">img de meme 1</option>
+        <option value="meme2">img de meme 2</option>
         <option value="meme3">img de meme 3</option>
         <option value="meme4">img de meme 4</option>
         <option value="meme5">img de meme 5</option>
@@ -36,14 +36,19 @@ function App() {
 
       <button>Exportar</button>
 
-      <div>
-        <span>{linea1}</span><br />
-        <span>{linea2}</span>
+      <div className="contenedor-imagen">
+        
+          <p className="texto-superior">{linea1}</p><br /> 
+     
+
+        <p className="texto-inferior">{linea2}</p>
         <img
-          src={`/img/meme1.jpg`}
+          src={`/img/${imagen}.jpg`}
           alt="Meme 1"
         />
       </div>
+
+     
     </div>
   );
 }
