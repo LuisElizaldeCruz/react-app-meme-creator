@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './App.css';
+import html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image';
 
 function App() {
   const [linea1, setLinea1] = useState("");
@@ -9,7 +11,23 @@ function App() {
   const onChangeLinea1 = e => setLinea1(e.target.value);
   const onChangeLinea2 = e => setLinea2(e.target.value);
   const onChangeImagen = e => setImagen(e.target.value);
+  const onclickExportar = (e) => {
+    var node = document.getElementById('meme');
 
+    domtoimage.toJpeg(node)
+      .then(function (dataUrl) {
+        console.log(dataUrl);
+        //window.open(dataUrl);
+        var link = document.createElement('a');
+        link.download = "meme.jpeg";
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
+
+  }
   return (
     <div className="App">
       <select onChange={onChangeImagen}>
@@ -34,21 +52,15 @@ function App() {
         placeholder="linea 2">
       </input><br />
 
-      <button>Exportar</button>
+      <button className="btn-exportar" onClick={onclickExportar}>Exportar</button>
 
-      <div className="contenedor-imagen">
-        
-          <p className="texto-superior">{linea1}</p><br /> 
-     
+      <div className="contenedor-imagen meme" id="meme">
+        <p className="texto-superior" id='superior'>{linea1}</p><br />
+        <p className="texto-inferior" id='inferior'>{linea2}</p>
 
-        <p className="texto-inferior">{linea2}</p>
-        <img
-          src={`/img/${imagen}.jpg`}
-          alt="Meme 1"
-        />
+        <img src={`/img/${imagen}.jpg`} alt="Meme 1" />
       </div>
 
-     
     </div>
   );
 }
